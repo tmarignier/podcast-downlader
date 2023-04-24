@@ -1,7 +1,7 @@
-[Environment]::CurrentDirectory=(Get-Location -PSProvider FileSystem).ProviderPath
+$my_super_feed_url = "https://radiofrance-podcast.net/podcast09/rss_23119.xml"
 $wc = New-Object System.Net.WebClient
 $wc.Encoding = [System.Text.Encoding]::UTF8
-$a = ([xml]$wc.downloadstring("https://radiofrance-podcast.net/podcast09/rss_23119.xml"))
+$a = ([xml]$wc.downloadstring($my_super_feed_url))
 $a.rss.channel.item | foreach{  
     $url = New-Object System.Uri($_.enclosure.url)
     $file = $url.Segments[-1]
